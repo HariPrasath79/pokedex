@@ -1,12 +1,7 @@
 // models/pokemon.dart
 
-import 'package:isar/isar.dart';
-
-part 'pokemon.g.dart';
-
-@collection
 class Pokemon {
-  Id id = Isar.autoIncrement;
+  int? id;
 
   final String name;
   final String url;
@@ -18,10 +13,13 @@ class Pokemon {
   int? weight;
 
   Pokemon({
+    this.id,
     required this.name,
     required this.url,
     this.imageUrl,
     this.stats,
+    this.abilities,
+    this.weight,
     this.isWishlisted = false,
   });
 
@@ -33,11 +31,10 @@ class Pokemon {
   }
 }
 
-@embedded
 class Stats {
   final int? baseStat;
   final String? stat;
-  Stats({ this.baseStat,  this.stat});
+  Stats({this.baseStat, this.stat});
 
   factory Stats.fromJson(Map<String, dynamic> json) {
     return Stats(
@@ -47,7 +44,6 @@ class Stats {
   }
 }
 
-@embedded
 class Ability {
   String? ability;
   int? slot;

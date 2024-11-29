@@ -21,9 +21,12 @@ const loadingIndicator = LoadingIndicator(
   /// Optional, the stroke backgroundColor
 );
 
-const fetchingLoadingIndicator = SizedBox(
-  height: 50,
-  child: LoadingIndicator(
+final fetchingLoadingIndicator = Container(
+  height: 35,
+  color: Colors.transparent,
+  child: const LoadingIndicator(
+    pathBackgroundColor: Colors.transparent,
+    backgroundColor: Colors.transparent,
     colors: [
       Colors.red,
       Colors.orange,

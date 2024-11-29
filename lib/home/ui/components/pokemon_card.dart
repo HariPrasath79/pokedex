@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class PokemonCard extends StatelessWidget {
   final Color? backgroundColor;
+  final bool isHeroDisabled;
   final String index;
   final String imageUrl;
   final String name;
@@ -18,6 +19,7 @@ class PokemonCard extends StatelessWidget {
     required this.isWishlisted,
     required this.wishlistIconOnTap,
     this.onTap,
+    this.isHeroDisabled = false,
   });
 
   @override
@@ -42,13 +44,18 @@ class PokemonCard extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Hero(
-                    tag: name,
-                    child: Image.network(
-                      imageUrl,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+                  isHeroDisabled
+                      ? Image.network(
+                          imageUrl,
+                          fit: BoxFit.cover,
+                        )
+                      : Hero(
+                          tag: name,
+                          child: Image.network(
+                            imageUrl,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                   Column(
                     children: [
                       Text(

@@ -1,8 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:logger/web.dart';
 import 'package:pokedex/home/models/pokemon.dart';
 import 'package:pokedex/home/repository/home_repository.dart';
+import 'package:pokedex/wishlist/repository/wishlist_firebase_repo.dart';
 
 class HomeController extends ChangeNotifier {
   // final PokemonService _pokemonService = PokemonService();
@@ -13,6 +15,10 @@ class HomeController extends ChangeNotifier {
   bool _isPokemonFetching = false;
   int _currentPokemonPagationIndex = 11;
   bool _isLastPokemon = false;
+
+  List _wishlistedPokemons = [];
+
+  final wishlistService = WishlistService();
 
   final searchController = TextEditingController();
 
@@ -26,6 +32,8 @@ class HomeController extends ChangeNotifier {
 
   List<Pokemon> get pokemons => _pokemons;
   bool get isLoading => _isLoading;
+
+  List get wishlistedPokemons => _wishlistedPokemons;
 
   bool get isPokemonFetching => _isPokemonFetching;
   int get currentPokemonPagationIndex => _currentPokemonPagationIndex;
@@ -54,13 +62,19 @@ class HomeController extends ChangeNotifier {
 
     pokemon.weight = pokemonData["weight"];
 
+    pokemon.id = pokemonData["id"];
+
     return pokemon;
   }
 
   Future<void> loadPokemons() async {
     try {
+      _wishlistedPokemons = await wishlistService.wishlistedPokemonNames();
       final pokemons = await _homeRepository.fetchPokemons(0, 10);
       for (var pokemon in pokemons) {
+        if (_wishlistedPokemons.contains(pokemon.name)) {
+          pokemon.isWishlisted = true;
+        }
         final pokedex = await getPokemonDetails(pokemon);
         _pokemons.add(pokedex);
       }
@@ -90,14 +104,21 @@ class HomeController extends ChangeNotifier {
       _isPokemonFetching = false;
     } catch (e) {
       print(e);
+      Logger().i(e);
       _isLastPokemon = true;
       _isPokemonFetching = false;
     }
     notifyListeners();
   }
 
-  void wishlistPokemon(index) {
-    _pokemons[index].isWishlisted = !_pokemons[index].isWishlisted;
+  void wishlistPokemon(index) async {
+    try {
+      await wishlistService.addToWishlist(_pokemons[index]);
+      _pokemons[index].isWishlisted = !_pokemons[index].isWishlisted;
+    } catch (e) {
+      Logger().e(e);
+    }
+
     notifyListeners();
   }
 

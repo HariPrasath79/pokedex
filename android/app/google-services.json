@@ -12,7 +12,20 @@
           "package_name": "com.example.pokedex"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "283903238271-g7o357diglbbfdddtekp8qbda9uht4is.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pokedex",
+            "certificate_hash": "0c43317297c1a05ec342f12f24b4922891dbb6e9"
+          }
+        },
+        {
+          "client_id": "283903238271-3i6ovod6qo97dqlr956k6u6ucg3fjaqk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyA55BPIyT1RxqxLu5A8MZeQccKt8tOqdX4"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "283903238271-3i6ovod6qo97dqlr956k6u6ucg3fjaqk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "283903238271-v4dg790repvbr7kcmvbblc9nhhtvqocl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.pokedex"
+              }
+            }
+          ]
         }
       }
     }
