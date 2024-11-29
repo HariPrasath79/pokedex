@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "283903238271",
+    "project_id": "pokemon-c7f86",
+    "storage_bucket": "pokemon-c7f86.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:283903238271:android:8e7154256524275b2c1f4a",
+        "android_client_info": {
+          "package_name": "com.example.pokedex"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA55BPIyT1RxqxLu5A8MZeQccKt8tOqdX4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
