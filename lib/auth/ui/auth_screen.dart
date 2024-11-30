@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pokedex/auth/controller/auth_controller.dart';
 import 'package:provider/provider.dart';
 
 class AuthScreen extends StatefulWidget {
+  const AuthScreen({super.key});
+
   @override
   _AuthScreenState createState() => _AuthScreenState();
 }
@@ -28,10 +28,12 @@ class _AuthScreenState extends State<AuthScreen> {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: controller.isLoading
-                  ? SizedBox(
+                  ? const SizedBox(
                       height: 40,
                       child: Center(
-                        child: CircularProgressIndicator(),
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                        ),
                       ),
                     )
                   : Row(
@@ -55,7 +57,7 @@ class _AuthScreenState extends State<AuthScreen> {
           },
         ),
       ),
-      backgroundColor: Color.fromRGBO(255, 203, 5, 1),
+      backgroundColor: const Color.fromRGBO(255, 203, 5, 1),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
